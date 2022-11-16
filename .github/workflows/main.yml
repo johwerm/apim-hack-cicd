@@ -19,21 +19,20 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - name: List container registries
-      uses: azure/CLI@v1
-      with:
-        azcliversion: latest
-        inlineScript: |
-          az acr list -o table
-          az account set --subscription 761e9325-d8b8-4bf3-a8ef-fb992c13539f
-          az acr login -n acr${{ env.name }} -u acr${{ env.name}} -p ${{ secrets.AZURE_ACR_PASSWORD }}
-          az acr show -n acr${{ env.name }}
+    # - name: List container registries
+    #   uses: azure/CLI@v1
+    #   with:
+    #     azcliversion: latest
+    #     inlineScript: |
+    #       az acr list -o table
+    #       az account set --subscription 761e9325-d8b8-4bf3-a8ef-fb992c13539f
+    #       az acr login -n acr${{ env.name }} -u acr${{ env.name}} -p ${{ secrets.AZURE_ACR_PASSWORD }}
+    #       az acr show -n acr${{ env.name }}
     - name: Build image with Azure Container Registry
       uses: azure/CLI@v1
       with:
         azcliversion: latest
         inlineScript: |
-          az acr login -n acr${{ env.name }} -u acr${{ env.name}} -p ${{ secrets.AZURE_ACR_PASSWORD }}
           az acr build --registry acr${{ env.name }}.azurecr.io --image customerapi:${{ github.run_number }} . -f api/CustomerAPI/Dockerfile
 
     - name: Deploy API to Azure Container Apps 
