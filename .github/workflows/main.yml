@@ -24,7 +24,8 @@ jobs:
       with:
         azcliversion: latest
         inlineScript: |
-          az acr list -o table 
+          az acr list -o table
+          az acr show -n acr${{ env.name }}
     - name: Build image with Azure Container Registry
       uses: azure/CLI@v1
       with:
