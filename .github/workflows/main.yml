@@ -33,7 +33,8 @@ jobs:
       with:
         azcliversion: latest
         inlineScript: |
-          az acr build --registry acr${{ env.name }}.azurecr.io --image customerapi:${{ github.run_number }} . -f api/CustomerAPI/Dockerfile
+          az acr build -r acrjohwer -g rg-johwer . -f api/CustomerAPI/Dockerfile
+          # az acr build --registry acr${{ env.name }}.azurecr.io --image customerapi:${{ github.run_number }} . -f api/CustomerAPI/Dockerfile
 
     - name: Deploy API to Azure Container Apps 
       uses: azure/arm-deploy@v1
