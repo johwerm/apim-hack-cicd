@@ -3,12 +3,12 @@ on:
   push:
     branches:
     - 'main'
-  paths:
+    paths:
     - 'api/CustomerAPI/**' 
     - '.github/workflows/*' 
 
 jobs:
-   deploy_to_prod:
+  deploy_to_prod:
     name: 'Production deployment'
     uses: ./.github/workflows/main.yml         #Call the existing workflow 
     secrets: inherit
