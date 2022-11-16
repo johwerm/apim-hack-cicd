@@ -1,4 +1,4 @@
-param name string
+param name string = 'johwer'
 param location string = resourceGroup().location
 param dockerimagetag string
 param apidefinitionurl string = '' 
