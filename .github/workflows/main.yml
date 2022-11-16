@@ -19,6 +19,12 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+    - name: List container registries
+      uses: azure/CLI@v1
+      with:
+        azcliversion: latest
+        inlineScript: |
+          az acr list -o table 
     - name: Build image with Azure Container Registry
       uses: azure/CLI@v1
       with:
