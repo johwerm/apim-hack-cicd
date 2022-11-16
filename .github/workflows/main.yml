@@ -34,7 +34,7 @@ jobs:
       with:
         azcliversion: latest
         inlineScript: |
-          az acr build --registry acr${{ env.name }}.azurecr.io -g rg-johwer --image customerapi:${{ github.run_number }} . -f api/CustomerAPI/Dockerfile
+          az acr build --registry acr${{ env.name }}.azurecr.io -g rg-${{ env.name }} --image customerapi:${{ github.run_number }} . -f api/CustomerAPI/Dockerfile
 
     - name: Use dotnet tools to build and generate swagger
       run: |
